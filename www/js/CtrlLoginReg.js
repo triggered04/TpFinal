@@ -81,7 +81,7 @@ angular.module('app.controllers')
 
 })
 
-.controller('registroCtrl', function($scope, $firebaseArray,$ionicPopup,$timeout) {
+.controller('registroCtrl', function($scope, $firebaseArray,$ionicPopup,$timeout,Creditos) {
 
   $scope.regData = {};
   // Hacer logueo
@@ -114,6 +114,14 @@ angular.module('app.controllers')
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function(usuario){ /*Registro exitoso*/
         firebase.User = usuario;
+
+        $scope.creditos={
+                usuario: $scope.regData.nombre,
+                creditos:"100"
+                };
+
+        Creditos.$add($scope.creditos);
+
         usuario.updateProfile({
           displayName: nombre
         }).then(function() {
