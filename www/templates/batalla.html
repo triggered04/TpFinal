@@ -1,12 +1,14 @@
 <ion-view title="Batalla" id="page5">
   <ion-content padding="true" class="has-header">
-    <div id="batalla-button-bar1" class="button-bar">
-      <button id="batalla-button6" ng-class="[{cUnselected:Batalla.jugador1[0]==0},{cSelected:Batalla.jugador1[0]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla([1,0,0,0])">1</button>
-      <button id="batalla-button7" ng-class="[{cUnselected:Batalla.jugador1[1]==0},{cSelected:Batalla.jugador1[1]==1}]" class=" button-positive  button-block casilla" ng-click="selectCasilla([0,1,0,0])">2</button>
-    </div>
-    <div id="batalla-button-bar2" class="button-bar">
-      <button id="batalla-button9" ng-class="[{cUnselected:Batalla.jugador1[2]==0},{cSelected:Batalla.jugador1[2]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla ([0,0,1,0])">3</button>
-      <button id="batalla-button10" ng-class="[{cUnselected:Batalla.jugador1[3]==0},{cSelected:Batalla.jugador1[3]==1}]"  class=" button-positive  button-block casilla " ng-click="selectCasilla([0,0,0,1])">4</button>
+    <div class="casillas">
+      <div id="batalla-button-bar1" class="button-bar">
+        <button id="batalla-button6" ng-class="[{cUnselected:Batalla.jugador1[0]==0},{cSelected:Batalla.jugador1[0]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla([1,0,0,0])">1</button>
+        <button id="batalla-button7" ng-class="[{cUnselected:Batalla.jugador1[1]==0},{cSelected:Batalla.jugador1[1]==1}]" class=" button-positive  button-block casilla" ng-click="selectCasilla([0,1,0,0])">2</button>
+      </div>
+      <div id="batalla-button-bar2" class="button-bar">
+        <button id="batalla-button9" ng-class="[{cUnselected:Batalla.jugador1[2]==0},{cSelected:Batalla.jugador1[2]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla ([0,0,1,0])">3</button>
+        <button id="batalla-button10" ng-class="[{cUnselected:Batalla.jugador1[3]==0},{cSelected:Batalla.jugador1[3]==1}]"  class=" button-positive  button-block casilla " ng-click="selectCasilla([0,0,0,1])">4</button>
+      </div>
     </div>
     <div id="batalla-form2" class="list">
       <label class="item item-input" id="batalla-input3">
