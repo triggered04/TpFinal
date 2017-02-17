@@ -1,0 +1,18 @@
+/* Empty. Add your own CSS if you like */
+.casilla{
+  
+  cursor: pointer;
+  font-weight: bold;
+  height: 50px;
+  border: none;
+}
+.cSelected{
+ background: url("/img/casilla-selected.jpg")no-repeat;
+ color: #ffffff;
+ background-size: cover !important;
+}
+.cUnselected{
+ background: url("/img/casilla-unselected.jpg")no-repeat;
+ color: #000000;
+ background-size: cover !important;
+}

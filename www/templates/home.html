@@ -1,0 +1,13 @@
+<ion-view title="Home" id="page1">
+  <ion-content padding="true" class="has-header">
+    <div ng-repeat="info in info" >
+      <div class="list card" id="home-card21">
+        <ion-item class="item-avatar" id="home-list-item6">
+          <h2>{{info.P1}}</h2>
+          <p>{{info.monto}} </p>
+        </ion-item>
+      </div>
+    </div>
+    <button class="button button-positive  button-block" ui-sref="menu.batalla">Crear Batalla</button>
+  </ion-content>
+</ion-view>
