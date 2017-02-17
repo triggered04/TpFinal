@@ -56,7 +56,8 @@ function ($scope, $stateParams,Batallas) {
                         "monto": ""
                       };
     $scope.botonPrueba = function(){
-        Batallas.$add($scope.Batalla);      
+        Batallas.$add($scope.Batalla);  
+         location.href="#/side-menu21/page1";    
     }
     $scope.selectCasilla = function(valores){
      
