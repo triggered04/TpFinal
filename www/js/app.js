@@ -14,7 +14,26 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 })
 
+.service('getBatalla', function () {
+        var batalla = {
+                        "P1":firebase.auth().currentUser.displayName,
+                        "P2":"",
+                        "jugador1":[0,0,0,0],
+                        "jugador2":[0,0,0,0],
+                        "acertoJ1":false,
+                        "acertoJ2":false,
+                        "monto": ""
+                      };
 
+        return {
+            getProperty: function () {
+                return property;
+            },
+            setProperty: function(value) {
+                property = value;
+            }
+        };
+})
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

@@ -19,3 +19,7 @@
 .casillas{
   padding-bottom: 20px;
 }
+.cardClick{
+  display:block;
+   text-decoration: none;
+}
