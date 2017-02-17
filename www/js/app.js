@@ -7,6 +7,10 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services','firebase'])
 
+.value('esAdminVal', {
+    admin: false
+})
+
 .config(function($ionicConfigProvider, $sceDelegateProvider){
   
 

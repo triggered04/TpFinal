@@ -1,7 +1,7 @@
 //firebase.User.uid;
 angular.module('app.controllers')
 
-.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout) {
+.controller('loginCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout,esAdminVal) {
 
   $scope.loginData = {};
   $scope.Loguear = function(){
@@ -33,29 +33,26 @@ angular.module('app.controllers')
         });
         $timeout(function(){
           myPopup.close();
+          console.info(esAdminVal.admin);
 
         }, 3000);
 
         //Configurar menu
-        /*
-        var infosRef = new Firebase("https://triggered-4e761.firebaseio.com/Admin");
-        var admins = $firebaseArray(infosRef);
-        console.info(admins);
-        var user = firebase.auth().currentUser;
+        var infosRef = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios");
+        var users = $firebaseArray(infosRef);
+        console.info(users);
+        var userLog = firebase.auth().currentUser;
         var flagAdmin = false;
-        admins.$loaded(function(){
-          angular.forEach(admins, function(admin) {
-              if(admin.$value === user.uid){
-                $(".menu-item-admin").show();
+        users.$loaded(function(){
+          angular.forEach(users, function(user) {
+              if(user.uid === userLog.uid && user.admin){
+                //$(".menu-item-admin").show();
                 flagAdmin = true;
                 esAdminVal.admin = true;
               }
-              if(!flagAdmin){
-                $(".menu-item-admin").hide();
-                esAdminVal.admin = false;
-              }
           })
-        }); */       
+
+        }); 
       })
       .catch(function(error) { /*Manejo de errores*/
         var errorCode = error.code;
@@ -116,7 +113,8 @@ angular.module('app.controllers')
         firebase.User = usuario;
 
         $scope.usuario={
-                usuario: $scope.regData.nombre,
+                user: $scope.regData.nombre,
+                uid: usuario.uid,
                 creditos:"100",
                 admin:false
                 };
