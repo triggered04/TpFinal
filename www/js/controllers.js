@@ -19,7 +19,8 @@ function ($scope, $stateParams,Batallas,getBatalla) {
                         "jugador2":[0,0,0,0],
                         "acertoJ1":false,
                         "acertoJ2":false,
-                        "monto": ""
+                        "monto": "",
+                        "turno": "J1"
                       };
     $scope.goToBatalla=function(batalla){
             getBatalla.setProperty(batalla);

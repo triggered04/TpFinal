@@ -16,13 +16,14 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 .service('getBatalla', function () {
         var batalla = {
-                        "P1":firebase.auth().currentUser.displayName,
+                        "P1":"",
                         "P2":"",
                         "jugador1":[0,0,0,0],
                         "jugador2":[0,0,0,0],
                         "acertoJ1":false,
                         "acertoJ2":false,
-                        "monto": ""
+                        "monto": "",
+                        "turno": ""
                       };
 
         return {
