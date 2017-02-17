@@ -6,8 +6,8 @@ angular.module('app.controllers', [])
   return $firebaseArray(infosRef);
 })
 
-.factory("Creditos", function($firebaseArray) {
-  var infosRef = new Firebase("https://finalionic-6052c.firebaseio.com/Creditos");
+.factory("Usuarios", function($firebaseArray) {
+  var infosRef = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios");
   return $firebaseArray(infosRef);
 })
   
