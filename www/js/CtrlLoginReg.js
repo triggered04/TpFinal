@@ -35,6 +35,15 @@ angular.module('app.controllers')
           myPopup.close();
           console.info(esAdminVal.admin);
 
+          if(esAdminVal.admin){
+            $(".menu-item-admin").show();
+            console.info("visible");
+          }
+          else{
+            console.info("oculto");
+            $(".menu-item-admin").hide();
+          }
+
         }, 3000);
 
         //Configurar menu

@@ -2,9 +2,9 @@ angular.module('app.controllers')
 
 .controller('creditoCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout,esAdminVal, $crypto,Creditos,Usuarios) {
 
-
-  $scope.Creditos= Usuarios;
   $scope.uid = firebase.auth().currentUser.uid;
+  $scope.Creditos= Usuarios;
+
 
   $scope.generarCredito= function(monto){
 
