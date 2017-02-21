@@ -6,9 +6,9 @@ angular.module('app.controllers')
 
     if(!esAdminVal.admin){
       $scope.creditoGenerado;
-      var date = new Date();
+      var date = new Date().toString();
       console.info(date);
-      var encrypted = $crypto.encrypt();
+      var encrypted = $crypto.encrypt(date);
       console.info(encrypted);
     }
 
