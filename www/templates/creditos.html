@@ -1,13 +1,32 @@
 <ion-view title="Creditos" id="page6">
   <ion-content padding="true" class="has-header">
+
+    CARGAR CREDITOS
     <form id="creditos-form3" class="list">
       <div class="item item-input-inset">
+            <label class="item-input-wrapper" id="creditos-input4">
+              <input type="text" placeholder="">
+            </label>-
+            <label class="item-input-wrapper" id="creditos-input4">
+              <input type="text" placeholder="">
+            </label>-
             <label class="item-input-wrapper" id="creditos-input4">
               <input type="text" placeholder="">
             </label>
             <button class="button button-small">Cargar</button>
       </div>
     </form>
-    <button id="creditos-button14" class="button button-positive  button-block">QR</button>
+    <button id="creditos-button14" class="button button-positive  button-block" ng-click="cargarCredito()">QR</button>
+
+    GENERAR CREDITOS
+    <div class="item item-input-inset" >
+            <label class="item-input-wrapper" id="creditos-input4">
+              <input type="text" placeholder="" ng-model="creditoGenerado" >
+            </label>
+            <button class="button button-small" ng-click="generarCredito()">Generar Codigo</button>
+      </div>
+
   </ion-content>
+
+
 </ion-view>

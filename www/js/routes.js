@@ -57,7 +57,7 @@ angular.module('app.routes', [])
     views: {
       'side-menu21': {
         templateUrl: 'templates/creditos.html',
-        controller: 'creditosCtrl'
+        controller: 'creditoCtrl'
       }
     }
   })
