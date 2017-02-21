@@ -4,6 +4,7 @@ angular.module('app.controllers')
 
   $scope.uid = firebase.auth().currentUser.uid;
   $scope.Creditos= Usuarios;
+  $scope.codigosCreditos =Creditos;
 
 
   $scope.generarCredito= function(monto){

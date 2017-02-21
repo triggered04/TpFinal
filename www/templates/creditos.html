@@ -1,9 +1,9 @@
 <ion-view title="Creditos" id="page6">
   <ion-content padding="true" class="has-header">
 
-  <h1 ng-repeat="cred in Creditos" ng-if="cred.uid == uid">Creditos {{cred.creditos}}</h1>
+  <h1 align="center" ng-repeat="cred in Creditos" ng-if="cred.uid == uid">Creditos {{cred.creditos}}</h1>
 
-    CARGAR CREDITOS
+    <h4>CARGAR CREDITOS</h4>
     <form id="creditos-form3" class="list">
       <div class="item item-input-inset">
             <label class="item-input-wrapper" id="creditos-input4">
@@ -14,14 +14,21 @@
     </form>
     <button id="creditos-button14" class="button button-positive  button-block">QR</button>
 
-    <div class="menu-item-admin">GENERAR CREDITOS
-    <div class="item item-input-inset " >    
-            <label class="item-input-wrapper" id="creditos-input4">
-              <input type="text" placeholder="" ng-model="creditoGenerado" >
-            </label>
-            <button class="button button-small" ng-click="generarCredito(creditoGenerado)">Generar Codigo
-            </button>
-    </div>
+    <div class="menu-item-admin">
+      <h4>GENERAR CREDITOS</h4>
+      <div class="item item-input-inset " >    
+              <label class="item-input-wrapper" id="creditos-input4">
+                <input type="text" placeholder="" ng-model="creditoGenerado" >
+              </label>
+              <button class="button button-small" ng-click="generarCredito(creditoGenerado)">Generar Codigo
+              </button>
+      </div>
+
+      <h4>CREDITOS</h4>
+      <div class="list" ng-repeat="codCred in codigosCreditos" >
+        <div class="item" ng-if=!codCred.usado> MONTO ${{codCred.monto}} <p>CODIGO '{{codCred.code}}'
+        </div>
+      </div>
     </div>
 
   </ion-content>
