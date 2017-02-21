@@ -21,9 +21,9 @@ angular.module('app.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,Batallas,getBatalla) {
-    console.log(Batallas);
     $scope.infos =Batallas;
     $scope.nueva = getBatalla.nuevaBatalla();
+    $scope.userid = firebase.auth().currentUser.uid;
     $scope.goToBatalla=function(batalla){
             getBatalla.setProperty(batalla);
     }
@@ -64,7 +64,7 @@ function ($scope, $stateParams,Batallas,getBatalla) {
     console.log($scope.Batalla.$id);
     $scope.crearBatalla = function(){
       $scope.Batalla.turno="J2";
-      $scope.Batalla.P1 = firebase.auth().currentUser.displayName; 
+      $scope.Batalla.P1 = firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid; 
       Batallas.$add($scope.Batalla);  
       location.href="#/side-menu21/page1";    
     }
@@ -72,7 +72,7 @@ function ($scope, $stateParams,Batallas,getBatalla) {
       var ref = new Firebase('https://finalionic-6052c.firebaseio.com/Batallas/'+$scope.Batalla.$id);
       ref.update({
           "turno":"J1",
-          "P2":firebase.auth().currentUser.displayName,
+          "P2":firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid,
           "jugador2":$scope.Batalla.jugador2
       });
     /*  $scope.Batalla.turno="J1";
@@ -99,10 +99,11 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('perfilCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('perfilCtrl', ['$scope', '$stateParams','Batallas','getBatalla', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams,Batallas,getBatalla) {
+
 
 
 }])

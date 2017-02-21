@@ -1,10 +1,10 @@
 <ion-view title="Home" id="page1">
   <ion-content padding="true" class="has-header">
-    <div ng-repeat="info in infos" ng-if="!info.P2" >
+    <div ng-repeat="info in infos" ng-if="!info.P2 && info.P1.split('-')[1] != userid" >
       <div class="list card" id="home-card21">
         <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
         <ion-item class="item-avatar" id="home-list-item6">
-          <h2>{{info.P1}}</h2>
+          <h2>{{info.P1.split('-')[0]}}</h2>
           <p>{{info.monto}} </p>
         </ion-item>
       </div>
