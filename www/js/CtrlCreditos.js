@@ -26,6 +26,36 @@ angular.module('app.controllers')
 
         });
     }
-  }
+  };
+
+  $scope.cargarCredito= function(codigo){
+
+    var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Creditos/");
+
+    var query = ref.orderByChild("code").equalTo(codigo);
+
+    query.on('value', function(snap){ 
+
+      var obj = snap.val();
+      var name = Object.keys(obj);
+
+      console.info(obj[name].usado);
+
+      if(!obj[name].usado){
+        var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Creditos/" + name);
+        ref.update({
+          user: firebase.auth().currentUser.displayName,
+          usado:true        
+        });
+        console.info("SALDO AGREGADO");
+      }
+      else{
+        console.info("CODIGO USADO");
+      }
+
+    });
+
+
+  };
 
 })

@@ -5,18 +5,12 @@
     <form id="creditos-form3" class="list">
       <div class="item item-input-inset">
             <label class="item-input-wrapper" id="creditos-input4">
-              <input type="text" placeholder="">
-            </label>-
-            <label class="item-input-wrapper" id="creditos-input4">
-              <input type="text" placeholder="">
-            </label>-
-            <label class="item-input-wrapper" id="creditos-input4">
-              <input type="text" placeholder="">
+              <input type="text" placeholder="" ng-model="codigo" >
             </label>
-            <button class="button button-small">Cargar</button>
+            <button class="button button-small" ng-click="cargarCredito(codigo)">Cargar</button>
       </div>
     </form>
-    <button id="creditos-button14" class="button button-positive  button-block" ng-click="cargarCredito()">QR</button>
+    <button id="creditos-button14" class="button button-positive  button-block">QR</button>
 
     GENERAR CREDITOS
     <div class="item item-input-inset" >
@@ -25,7 +19,7 @@
             </label>
             <button class="button button-small" ng-click="generarCredito(creditoGenerado)">Generar Codigo
             </button>
-      </div>
+    </div>
 
   </ion-content>
 
