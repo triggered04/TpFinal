@@ -47,13 +47,14 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('menuCtrl', ['$scope', '$stateParams','$ionicPopup','$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('menuCtrl', ['$scope', '$stateParams','$ionicPopup','$timeout','esAdminVal', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$ionicPopup,$timeout) {
+function ($scope, $stateParams,$ionicPopup,$timeout,esAdminVal) {
 
     $scope.logout = function() {
     $(".menu-item-admin").hide();
+    esAdminVal.admin=false;
     var myPopup = $ionicPopup.show({
            template: '<center> Sesión Cerrada! </center>',
            title: 'Logout'
