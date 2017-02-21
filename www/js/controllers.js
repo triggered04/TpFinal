@@ -61,6 +61,7 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
+    console.log($scope.Batalla.$id);
     $scope.crearBatalla = function(){
       $scope.Batalla.turno="J2";
       $scope.Batalla.P1 = firebase.auth().currentUser.displayName; 
@@ -68,9 +69,15 @@ function ($scope, $stateParams,Batallas,getBatalla) {
       location.href="#/side-menu21/page1";    
     }
     $scope.comenzarBatalla = function(){
-      $scope.Batalla.turno="J1";
+      var ref = new Firebase('https://finalionic-6052c.firebaseio.com/Batallas/'+$scope.Batalla.$id);
+      ref.update({
+          "turno":"J1",
+          "P2":firebase.auth().currentUser.displayName,
+          "jugador2":$scope.Batalla.jugador2
+      });
+    /*  $scope.Batalla.turno="J1";
       $scope.Batalla.P2 = firebase.auth().currentUser.displayName; 
-      Batallas.$add($scope.Batalla);  
+      Batallas.$add($scope.Batalla);  */
       location.href="#/side-menu21/page1";    
     }
     $scope.selectCasilla = function(valores,jugador){

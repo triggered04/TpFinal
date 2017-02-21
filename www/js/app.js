@@ -30,9 +30,9 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
                         "jugador2":[0,0,0,0],
                         "acertoJ1":false,
                         "acertoJ2":false,
-                        "monto": "",
+                        "monto": 0,
                         "turno": "",
-                        "cd_batalla":0
+                    
                       };
 
         return {
@@ -50,9 +50,8 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
                         "jugador2":[0,0,0,0],
                         "acertoJ1":false,
                         "acertoJ2":false,
-                        "monto": "",
+                        "monto": 0,
                         "turno": "",
-                        "cd_batalla":0
                       }
               return property;
             }
