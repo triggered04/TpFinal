@@ -10,6 +10,11 @@ angular.module('app.controllers', [])
   var infosRef = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios");
   return $firebaseArray(infosRef);
 })
+
+.factory("Creditos", function($firebaseArray) {
+  var infosRef = new Firebase("https://finalionic-6052c.firebaseio.com/Creditos");
+  return $firebaseArray(infosRef);
+})
   
   
 .controller('homeCtrl', ['$scope', '$stateParams','Batallas','getBatalla', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
