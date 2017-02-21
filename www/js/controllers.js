@@ -64,7 +64,7 @@ function ($scope, $stateParams,Batallas,getBatalla) {
     }
     $scope.comenzarBatalla = function(){
       $scope.Batalla.turno="J1";
-      $scope.Batalla.P1 = firebase.auth().currentUser.displayName; 
+      $scope.Batalla.P2 = firebase.auth().currentUser.displayName; 
       Batallas.$add($scope.Batalla);  
       location.href="#/side-menu21/page1";    
     }

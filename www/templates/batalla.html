@@ -37,6 +37,6 @@
         </div>
     </div>
     <button  ng-if="Batalla.P1 == ''" id="batalla-button12" class="button button-positive  button-block" ng-click="crearBatalla()">Crear Batalla</button>
-    <button  ng-if="Batalla.P2 == ''" id="batalla-button12" class="button button-positive  button-block" ng-click="comenzarBatalla()">Comenzar Batalla</button>
+    <button  ng-if="Batalla.P1 != '' && Batalla.P2 == '' " id="batalla-button12" class="button button-positive  button-block" ng-click="comenzarBatalla()">Comenzar Batalla</button>
   </ion-content>
 </ion-view>
