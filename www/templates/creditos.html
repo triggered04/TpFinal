@@ -1,6 +1,8 @@
 <ion-view title="Creditos" id="page6">
   <ion-content padding="true" class="has-header">
 
+  <h1 ng-repeat="cred in Creditos" ng-if="cred.uid == uid">Creditos {{cred.creditos}}</h1>
+
     CARGAR CREDITOS
     <form id="creditos-form3" class="list">
       <div class="item item-input-inset">

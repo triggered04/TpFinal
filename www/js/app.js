@@ -11,6 +11,10 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     admin: false
 })
 
+.value('infoUser', {
+    infoUser: null
+})
+
 .config(['$cryptoProvider', function($cryptoProvider){
     $cryptoProvider.setCryptographyKey('ABCD123');
 }])
