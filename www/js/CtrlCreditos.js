@@ -30,31 +30,73 @@ angular.module('app.controllers')
 
   $scope.cargarCredito= function(codigo){
 
+    var credito = {
+      cargar:false,
+      codCred: null,
+      codUser:null,
+      montoInicial:null,
+      montoCarga:null,
+      montoFinal:null
+      };
+
     var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Creditos/");
-
     var query = ref.orderByChild("code").equalTo(codigo);
+    
 
-    query.on('value', function(snap){ 
+    query.on('value', function(snap){
+      objCred = snap.val();
+      var refCred = Object.keys(objCred);
 
-      var obj = snap.val();
-      var name = Object.keys(obj);
-
-      console.info(obj[name].usado);
-
-      if(!obj[name].usado){
-        var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Creditos/" + name);
-        ref.update({
-          user: firebase.auth().currentUser.displayName,
-          usado:true        
-        });
-        console.info("SALDO AGREGADO");
+      if(!objCred[refCred].usado)
+      {
+        credito.cargar=true;
+        credito.codCred = refCred;
+        credito.montoCarga = parseInt(objCred[refCred].monto);
       }
-      else{
-        console.info("CODIGO USADO");
-      }
-
     });
 
+    var refUser = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/");
+    var queryUser = refUser.orderByChild("uid").equalTo(firebase.auth().currentUser.uid);
+
+    queryUser.on('value', function(snap){
+      objUser = snap.val();
+      var refUser = Object.keys(objUser);
+      credito.codUser = refUser;
+      credito.montoInicial = parseInt(objUser[refUser].creditos);
+    });    
+
+    $timeout(function(){      
+      var creditoTotal = (credito.montoInicial + credito.montoCarga);
+      credito.montoFinal =  creditoTotal;
+      //console.info(credito);
+
+      if(credito.cargar){
+        var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Creditos/" + credito.codCred);
+          ref.update({
+            user: firebase.auth().currentUser.displayName,
+            usado:true        
+          });
+
+        var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + credito.codUser);
+        ref.update({
+          creditos: credito.montoFinal        
+        });
+
+        var myPopup = $ionicPopup.alert({
+           template: '<center>' + credito.montoCarga  + "</center>",
+           title: "CREDITO CARGADO"
+          });
+
+      }
+      else{
+
+        var myPopup = $ionicPopup.alert({
+           template: '<center>' + codigo + "</center>",
+           title: "CODIGO YA USADO"
+          });
+      }
+
+    }, 3000);
 
   };
 
