@@ -27,7 +27,8 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
                         "acertoJ1":false,
                         "acertoJ2":false,
                         "monto": "",
-                        "turno": ""
+                        "turno": "",
+                        "cd_batalla":0
                       };
 
         return {
@@ -36,6 +37,20 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
             },
             setProperty: function(value) {
                 property = value;
+            },
+            nuevaBatalla:function(){
+              property = {
+                        "P1":"",
+                        "P2":"",
+                        "jugador1":[0,0,0,0],
+                        "jugador2":[0,0,0,0],
+                        "acertoJ1":false,
+                        "acertoJ2":false,
+                        "monto": "",
+                        "turno": "",
+                        "cd_batalla":0
+                      }
+              return property;
             }
         };
 })

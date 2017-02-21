@@ -17,17 +17,8 @@ angular.module('app.controllers', [])
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,Batallas,getBatalla) {
     console.log(Batallas);
-    $scope.info =Batallas;
-    $scope.nueva = {
-                        "P1":firebase.auth().currentUser.displayName,
-                        "P2":"",
-                        "jugador1":[0,0,0,0],
-                        "jugador2":[0,0,0,0],
-                        "acertoJ1":false,
-                        "acertoJ2":false,
-                        "monto": "",
-                        "turno": "J1"
-                      };
+    $scope.infos =Batallas;
+    $scope.nueva = getBatalla.nuevaBatalla();
     $scope.goToBatalla=function(batalla){
             getBatalla.setProperty(batalla);
     }
@@ -65,13 +56,24 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
-    $scope.botonPrueba = function(){
-        Batallas.$add($scope.Batalla);  
-         location.href="#/side-menu21/page1";    
+    $scope.crearBatalla = function(){
+      $scope.Batalla.turno="J2";
+      $scope.Batalla.P1 = firebase.auth().currentUser.displayName; 
+      Batallas.$add($scope.Batalla);  
+      location.href="#/side-menu21/page1";    
     }
-    $scope.selectCasilla = function(valores){
-     
-      $scope.Batalla.jugador1 = valores;
+    $scope.comenzarBatalla = function(){
+      $scope.Batalla.turno="J1";
+      $scope.Batalla.P1 = firebase.auth().currentUser.displayName; 
+      Batallas.$add($scope.Batalla);  
+      location.href="#/side-menu21/page1";    
+    }
+    $scope.selectCasilla = function(valores,jugador){
+     switch(jugador){
+        case 1: $scope.Batalla.jugador1 = valores; break;
+        case 2: $scope.Batalla.jugador2 = valores; break;
+     }
+      
     }
     
 

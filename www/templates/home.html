@@ -1,6 +1,6 @@
 <ion-view title="Home" id="page1">
   <ion-content padding="true" class="has-header">
-    <div ng-repeat="info in info" >
+    <div ng-repeat="info in infos | filter: { P2: '' }" >
       <div class="list card" id="home-card21">
         <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
         <ion-item class="item-avatar" id="home-list-item6">
