@@ -3,12 +3,12 @@
     <div ng-repeat="info in infos" ng-if="!info.P2 && info.P1.split('-')[1] != userid" >
       <div class="list card" id="home-card21">
         <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
-        <ion-item class="item-avatar" id="home-list-item6">
-          <h2>{{info.P1.split('-')[0]}}</h2>
-          <p>{{info.monto}} </p>
-        </ion-item>
+          <ion-item class="item-avatar" id="home-list-item6">
+            <h2>{{info.P1.split('-')[0]}}</h2>
+            <p>{{info.monto}} </p>
+          </ion-item>
+        </a>
       </div>
-      </a>
     </div>
     <button class="button button-positive  button-block" ng-click="goToBatalla(nueva)" ui-sref="menu.batalla">Crear Batalla</button>
   </ion-content>

@@ -103,8 +103,11 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,Batallas,getBatalla) {
-
-
+   $scope.infos =Batallas;
+   $scope.userid = firebase.auth().currentUser.uid;
+    $scope.goToBatalla=function(batalla){
+            getBatalla.setProperty(batalla);
+    }
 
 }])
  

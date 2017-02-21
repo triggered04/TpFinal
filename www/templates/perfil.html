@@ -1,3 +1,27 @@
 <ion-view title="Perfil" id="page8">
-  <ion-content padding="true" class="has-header"></ion-content>
+  <ion-content padding="true" class="has-header">
+    <h3>Batallas Creadas</h3>
+     <div ng-repeat="info in infos" ng-if="info.P1.split('-')[1] == userid" >
+        <div class="list card" id="home-card21">
+          <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
+            <ion-item class="item-avatar" id="home-list-item6">
+              <h2>{{info.P1.split('-')[0]}}</h2>
+              <p>{{info.monto}} </p>
+            </ion-item>
+          </a>
+        </div>
+     </div>
+
+     <h3>Batallas Comenzadas</h3>
+      <div ng-repeat="info in infos" ng-if="info.P2.split('-')[1] == userid" >
+        <div class="list card" id="home-card21">
+          <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
+            <ion-item class="item-avatar" id="home-list-item6">
+              <h2>{{info.P1.split('-')[0]}}</h2>
+              <p>{{info.monto}} </p>
+            </ion-item>
+          </a>
+        </div>
+     </div>
+  </ion-content>
 </ion-view>
