@@ -76,13 +76,13 @@ function ($scope, $stateParams,$ionicPopup,$timeout,esAdminVal) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
-    var misCreditos;
+    var misCreditos,keyCred;
     var refUser = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/");
     var queryUser = refUser.orderByChild("uid").equalTo(firebase.auth().currentUser.uid);
     queryUser.on('value', function(snap){
       objUser = snap.val();
-      var refUser = Object.keys(objUser);
-      misCreditos = parseInt(objUser[refUser].creditos);
+      keyCred = Object.keys(objUser);
+      misCreditos = parseInt(objUser[keyCred].creditos);
     });    
     $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
@@ -92,6 +92,10 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
           $scope.Batalla.turno="J2";
           $scope.Batalla.P1 = firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid; 
           Batallas.$add($scope.Batalla);  
+          var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
+          ref.update({
+            creditos: misCreditos-$scope.Batalla.monto        
+          });
           location.href="#/side-menu21/page1";  
         }
         else{
@@ -101,7 +105,7 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
             });
             $timeout(function(){
            myPopup.close();
-          }, 1000);
+          }, 2000);
         }
        
       
@@ -114,6 +118,10 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
             "P2":firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid,
             "jugador2":$scope.Batalla.jugador2
         });
+        var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
+          ref.update({
+            creditos: misCreditos-$scope.Batalla.monto        
+          });
         location.href="#/side-menu21/page1";  
       } else{
            var myPopup = $ionicPopup.show({
@@ -122,7 +130,7 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
             });
             $timeout(function(){
            myPopup.close();
-          }, 1000);
+          }, 2000);
         } 
     }
     $scope.selectCasilla = function(valores,jugador){
@@ -144,33 +152,30 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
           $scope.Batalla.acertoJ2 = angular.equals($scope.Batalla.jugador1,$scope.eligeJugador);
           if($scope.Batalla.acertoJ2 && $scope.Batalla.acertoJ1)
           {
-              var myPopup = $ionicPopup.show({
+              var myPopup = $ionicPopup.alert({
                 template: 'Empate',
                 title: 'Resultado'
               });
               $scope.Batalla.turno = "Nadie"
           }else if(!$scope.Batalla.acertoJ2 && !$scope.Batalla.acertoJ1){
-                var myPopup = $ionicPopup.show({
+                var myPopup = $ionicPopup.alert({
                   template: 'Segui participando',
                   title: 'Resultado'
                 });
                 $scope.Batalla.turno = "J1"
           }else if($scope.Batalla.acertoJ2 && !$scope.Batalla.acertoJ1){
-                var myPopup = $ionicPopup.show({
+                var myPopup = $ionicPopup.alert({
                   template: 'Ganaste',
                   title: 'Resultado'
                 });
                  $scope.Batalla.turno = "Nadie"
           }else if(!$scope.Batalla.acertoJ2 && $scope.Batalla.acertoJ1){
-                var myPopup = $ionicPopup.show({
+                var myPopup = $ionicPopup.alert({
                   template: 'Perdiste',
                   title: 'Resultado'
                 });
                  $scope.Batalla.turno = "Nadie"
           }
-          $timeout(function(){
-            myPopup.close();
-          }, 1000);
           
       }else{
           $scope.Batalla.acertoJ1 = angular.equals($scope.Batalla.jugador2,$scope.eligeJugador);
