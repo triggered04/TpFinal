@@ -76,26 +76,54 @@ function ($scope, $stateParams,$ionicPopup,$timeout,esAdminVal) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
+    var misCreditos;
+    var refUser = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/");
+    var queryUser = refUser.orderByChild("uid").equalTo(firebase.auth().currentUser.uid);
+    queryUser.on('value', function(snap){
+      objUser = snap.val();
+      var refUser = Object.keys(objUser);
+      misCreditos = parseInt(objUser[refUser].creditos);
+    });    
     $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
     $scope.eligeJugador= [0,0,0,0];
     $scope.crearBatalla = function(){
-      $scope.Batalla.turno="J2";
-      $scope.Batalla.P1 = firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid; 
-      Batallas.$add($scope.Batalla);  
-      location.href="#/side-menu21/page1";    
+        if(misCreditos>=$scope.Batalla.monto){
+          $scope.Batalla.turno="J2";
+          $scope.Batalla.P1 = firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid; 
+          Batallas.$add($scope.Batalla);  
+          location.href="#/side-menu21/page1";  
+        }
+        else{
+           var myPopup = $ionicPopup.show({
+                  template: 'Creditos Insuficientes',
+                  title: 'Nop'
+            });
+            $timeout(function(){
+           myPopup.close();
+          }, 1000);
+        }
+       
+      
     }
     $scope.comenzarBatalla = function(){
-      var ref = new Firebase('https://finalionic-6052c.firebaseio.com/Batallas/'+$scope.Batalla.$id);
-      ref.update({
-          "turno":"J1",
-          "P2":firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid,
-          "jugador2":$scope.Batalla.jugador2
-      });
-    /*  $scope.Batalla.turno="J1";
-      $scope.Batalla.P2 = firebase.auth().currentUser.displayName; 
-      Batallas.$add($scope.Batalla);  */
-      location.href="#/side-menu21/page1";    
+      if(misCreditos>=$scope.Batalla.monto){
+        var ref = new Firebase('https://finalionic-6052c.firebaseio.com/Batallas/'+$scope.Batalla.$id);
+        ref.update({
+            "turno":"J1",
+            "P2":firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid,
+            "jugador2":$scope.Batalla.jugador2
+        });
+        location.href="#/side-menu21/page1";  
+      } else{
+           var myPopup = $ionicPopup.show({
+                  template: 'Creditos Insuficientes',
+                  title: 'Nop'
+            });
+            $timeout(function(){
+           myPopup.close();
+          }, 1000);
+        } 
     }
     $scope.selectCasilla = function(valores,jugador){
      switch(jugador){
