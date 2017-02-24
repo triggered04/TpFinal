@@ -3,12 +3,12 @@
     <div class="jugador1" ng-if="Batalla.P1=='' || Batalla.P1.split('-')[1] == userid">
         <div class="casillas" ng-if="Batalla.P2 != ''">
             <div id="batalla-button-bar1" class="button-bar">
-              <button id="batalla-button6" class=" button-positive  button-block casilla " >1</button>
-              <button id="batalla-button7" class=" button-positive  button-block casilla">2</button>
+              <button id="batalla-button6"ng-class="[{cUnselected:eligeJugador[0]==0},{cSelected:eligeJugador[0]==1}]" ng-disabled="Batalla.turno=='J2'" class="button-positive  button-block casilla" ng-click="selectCasilla([1,0,0,0],3)">1</button>
+              <button id="batalla-button7"ng-class="[{cUnselected:eligeJugador[1]==0},{cSelected:eligeJugador[1]==1}]" ng-disabled="Batalla.turno=='J2'" class="button-positive  button-block casilla" ng-click="selectCasilla([0,1,0,0],3)">2</button>
             </div>
             <div id="batalla-button-bar2" class="button-bar">
-              <button id="batalla-button9" class=" button-positive  button-block casilla " >3</button>
-              <button id="batalla-button10" class=" button-positive  button-block casilla " >4</button>
+              <button id="batalla-button9" ng-class="[{cUnselected:eligeJugador[2]==0},{cSelected:eligeJugador[2]==1}]" ng-disabled="Batalla.turno=='J2'" class="button-positive  button-block casilla" ng-click="selectCasilla([0,0,1,0],3)">3</button>
+              <button id="batalla-button10" ng-class="[{cUnselected:eligeJugador[3]==0},{cSelected:eligeJugador[3]==1}]" ng-disabled="Batalla.turno=='J2'" class="button-positive  button-block casilla" ng-click="selectCasilla([0,0,0,1],3)">4</button>
             </div>
         </div>
         <div class="casillas">
@@ -27,26 +27,27 @@
             <input type="number" ng-disabled="Batalla.P1!=''"   placeholder="Ingrese el Monto" name="Batalla.monto" ng-model="Batalla.monto">
           </label>
         </div>
+        <button  ng-if="Batalla.P1 != '' && Batalla.P2 != '' && Batalla.turno=='J1'" id="batalla-button12" class="button button-positive  button-block" ng-click="elegirJugada()">Elegir jugada</button>
     </div>
-    <div class="jugador2" ng-if="Batalla.P1!='' && Batalla.P1.split('-')[1] != userid">
+    <div class="jugador2" ng-if="Batalla.P1!='' && Batalla.P1.split('-')[1] != userid ">
        <div class="casillas" ng-if="Batalla.P2 != ''">
             <div id="batalla-button-bar1" class="button-bar">
-              <button id="batalla-button6" ng-class="[{cUnselected:Batalla.jugador1[0]==0},{cSelected:Batalla.jugador1[0]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla([1,0,0,0],1)">1</button>
-              <button id="batalla-button7" ng-class="[{cUnselected:Batalla.jugador1[1]==0},{cSelected:Batalla.jugador1[1]==1}]" class=" button-positive  button-block casilla" ng-click="selectCasilla([0,1,0,0],1)">2</button>
+              <button id="batalla-button6" ng-class="[{cUnselected:eligeJugador[0]==0},{cSelected:eligeJugador[0]==1}]"  ng-disabled="Batalla.turno=='J1'" class=" button-positive  button-block casilla " ng-click="selectCasilla([1,0,0,0],4)">1</button>
+              <button id="batalla-button7" ng-class="[{cUnselected:eligeJugador[1]==0},{cSelected:eligeJugador[1]==1}]"  ng-disabled="Batalla.turno=='J1'"class=" button-positive  button-block casilla" ng-click="selectCasilla([0,1,0,0],4)">2</button>
             </div>
             <div id="batalla-button-bar2" class="button-bar">
-              <button id="batalla-button9" ng-class="[{cUnselected:Batalla.jugador1[2]==0},{cSelected:Batalla.jugador1[2]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla ([0,0,1,0],1)">3</button>
-              <button id="batalla-button10" ng-class="[{cUnselected:Batalla.jugador1[3]==0},{cSelected:Batalla.jugador1[3]==1}]"  class=" button-positive  button-block casilla " ng-click="selectCasilla([0,0,0,1],1)">4</button>
+              <button id="batalla-button9" ng-class="[{cUnselected:eligeJugador[2]==0},{cSelected:eligeJugador[2]==1}]"  ng-disabled="Batalla.turno=='J1'"class=" button-positive  button-block casilla " ng-click="selectCasilla([0,0,1,0],4)">3</button>
+              <button id="batalla-button10" ng-class="[{cUnselected:eligeJugador[3]==0},{cSelected:eligeJugador[3]==1}]" ng-disabled="Batalla.turno=='J1'"class=" button-positive  button-block casilla " ng-click="selectCasilla([0,0,0,1],4)">4</button>
             </div>
         </div>
         <div class="casillas">
             <div id="batalla-button-bar1" class="button-bar">
-              <button id="batalla-button6" ng-class="[{cUnselected:Batalla.jugador2[0]==0},{cSelected:Batalla.jugador2[0]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla([1,0,0,0],2)">1</button>
-              <button id="batalla-button7" ng-class="[{cUnselected:Batalla.jugador2[1]==0},{cSelected:Batalla.jugador2[1]==1}]" class=" button-positive  button-block casilla" ng-click="selectCasilla([0,1,0,0],2)">2</button>
+              <button id="batalla-button6" ng-class="[{cUnselected:Batalla.jugador2[0]==0},{cSelected:Batalla.jugador2[0]==1}]" ng-disabled="Batalla.P2!=''" class=" button-positive  button-block casilla " ng-click="selectCasilla([1,0,0,0],2)">1</button>
+              <button id="batalla-button7" ng-class="[{cUnselected:Batalla.jugador2[1]==0},{cSelected:Batalla.jugador2[1]==1}]" ng-disabled="Batalla.P2!=''"  class=" button-positive  button-block casilla" ng-click="selectCasilla([0,1,0,0],2)">2</button>
             </div>
             <div id="batalla-button-bar2" class="button-bar">
-              <button id="batalla-button9" ng-class="[{cUnselected:Batalla.jugador2[2]==0},{cSelected:Batalla.jugador2[2]==1}]" class=" button-positive  button-block casilla " ng-click="selectCasilla ([0,0,1,0],2)">3</button>
-              <button id="batalla-button10" ng-class="[{cUnselected:Batalla.jugador2[3]==0},{cSelected:Batalla.jugador2[3]==1}]"  class=" button-positive  button-block casilla " ng-click="selectCasilla([0,0,0,1],2)">4</button>
+              <button id="batalla-button9" ng-class="[{cUnselected:Batalla.jugador2[2]==0},{cSelected:Batalla.jugador2[2]==1}]" ng-disabled="Batalla.P2!=''" class=" button-positive  button-block casilla " ng-click="selectCasilla ([0,0,1,0],2)">3</button>
+              <button id="batalla-button10" ng-class="[{cUnselected:Batalla.jugador2[3]==0},{cSelected:Batalla.jugador2[3]==1}]" ng-disabled="Batalla.P2!=''"  class=" button-positive  button-block casilla " ng-click="selectCasilla([0,0,0,1],2)">4</button>
             </div>
         </div>
         <div id="batalla-form2" class="list">
@@ -55,7 +56,9 @@
               <input type="text" disabled placeholder="Ingrese el Monto" name="Batalla.monto" ng-model="Batalla.monto">
             </label>
         </div>
+        <button  ng-if="Batalla.P1 != '' && Batalla.P2 != '' && Batalla.turno=='J2'" id="batalla-button12" class="button button-positive  button-block" ng-click="elegirJugada()">Elegir jugada</button>
     </div>
+
     <button  ng-if="Batalla.P1 == ''" id="batalla-button12" class="button button-positive  button-block" ng-click="crearBatalla()">Crear Batalla</button>
     <button  ng-if="Batalla.P1 != '' && Batalla.P2 == '' && Batalla.P1.split('-')[1] != userid" id="batalla-button12" class="button button-positive  button-block" ng-click="comenzarBatalla()">Comenzar Batalla</button>
   </ion-content>

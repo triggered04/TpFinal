@@ -78,6 +78,7 @@ function ($scope, $stateParams,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
     $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
+    $scope.eligeJugador= [0,0,0,0];
     $scope.crearBatalla = function(){
       $scope.Batalla.turno="J2";
       $scope.Batalla.P1 = firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid; 
@@ -100,8 +101,15 @@ function ($scope, $stateParams,Batallas,getBatalla) {
      switch(jugador){
         case 1: $scope.Batalla.jugador1 = valores; break;
         case 2: $scope.Batalla.jugador2 = valores; break;
+        case 3: $scope.eligeJugador = valores; break;
+        case 4: $scope.eligeJugador = valores; break;
      }
       
+    }
+    $scope.elegirJugada = function(){
+      console.log($scope.Batalla.jugador2);
+      console.log($scope.Batalla.Seljugador1);
+      console.log(angular.equals($scope.Batalla.jugador2,$scope.eligeJugador));
     }
     
 
