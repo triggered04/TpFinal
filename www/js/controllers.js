@@ -76,14 +76,14 @@ function ($scope, $stateParams,$ionicPopup,$timeout,esAdminVal) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
-    var misCreditos,keyCred;
+    var misCreditos,keyCred,misCreditos2,keyCred2;
     var refUser = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/");
     var queryUser = refUser.orderByChild("uid").equalTo(firebase.auth().currentUser.uid);
     queryUser.on('value', function(snap){
-      objUser = snap.val();
+      var objUser = snap.val();
       keyCred = Object.keys(objUser);
       misCreditos = parseInt(objUser[keyCred].creditos);
-    });    
+    });  
     $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
     $scope.eligeJugador= [0,0,0,0];
@@ -143,13 +143,11 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
       
     }
     $scope.elegirJugada = function(jugador2){
-      var misCreditos,keyCred;
-      var refUser = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/");
-      var queryUser = refUser.orderByChild("uid").equalTo(firebase.auth().currentUser.uid);
+      var queryUser = refUser.orderByChild("uid").equalTo(Batalla.P1.split('-')[1]);
       queryUser.on('value', function(snap){
-        objUser = snap.val();
-        keyCred = Object.keys(objUser);
-        misCreditos = parseInt(objUser[keyCred].creditos);
+        var objUser = snap.val();
+        keyCred2 = Object.keys(objUser);
+        misCreditos2 = parseInt(objUser[keyCred].creditos);
       });    
       var acerto;
       console.log($scope.Batalla.jugador2);
@@ -163,6 +161,10 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
               var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
               ref.update({
                 creditos: misCreditos+$scope.Batalla.monto        
+              });
+              var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred2);
+              ref.update({
+                creditos: misCreditos2+$scope.Batalla.monto        
               });
               var myPopup = $ionicPopup.alert({
                 template: 'Empate',
@@ -187,11 +189,15 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
                 });
                  $scope.Batalla.turno = "Nadie"
           }else if(!$scope.Batalla.acertoJ2 && $scope.Batalla.acertoJ1){
+                var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred2);
+                ref.update({
+                  creditos: misCreditos2+($scope.Batalla.monto*2)
+                });
                 var myPopup = $ionicPopup.alert({
                   template: 'Perdiste',
                   title: 'Resultado'
                 });
-                 $scope.Batalla.turno = "Nadie"
+                $scope.Batalla.turno = "Nadie"
           }
           
       }else{
