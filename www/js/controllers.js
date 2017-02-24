@@ -71,10 +71,10 @@ function ($scope, $stateParams,$ionicPopup,$timeout,esAdminVal) {
 }])
    
    
-.controller('batallaCtrl', ['$scope', '$stateParams','Batallas','getBatalla', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('batallaCtrl', ['$scope', '$stateParams','$ionicPopup','Batallas','getBatalla', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,Batallas,getBatalla) {
+function ($scope, $stateParams,$ionicPopup,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
     $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
@@ -106,10 +106,55 @@ function ($scope, $stateParams,Batallas,getBatalla) {
      }
       
     }
-    $scope.elegirJugada = function(){
+    $scope.elegirJugada = function(jugador2){
+      var acerto 
       console.log($scope.Batalla.jugador2);
-      console.log($scope.Batalla.Seljugador1);
+      console.log($scope.eligeJugador);
       console.log(angular.equals($scope.Batalla.jugador2,$scope.eligeJugador));
+      
+      if(jugador2){
+          $scope.Batalla.acertoJ2 = angular.equals($scope.Batalla.jugador1,$scope.eligeJugador);
+          if($scope.Batalla.acertoJ2 && $scope.Batalla.acertoJ1)
+          {
+              var myPopup = $ionicPopup.show({
+                template: 'Empate',
+                title: 'Resultado'
+              });
+              $scope.Batalla.turno = "Nadie"
+          }else if(!$scope.Batalla.acertoJ2 && !$scope.Batalla.acertoJ1){
+                var myPopup = $ionicPopup.show({
+                  template: 'Segui participando',
+                  title: 'Resultado'
+                });
+                $scope.Batalla.turno = "J1"
+          }else if($scope.Batalla.acertoJ2 && !$scope.Batalla.acertoJ1){
+                var myPopup = $ionicPopup.show({
+                  template: 'Ganaste',
+                  title: 'Resultado'
+                });
+                 $scope.Batalla.turno = "Nadie"
+          }else if(!$scope.Batalla.acertoJ2 && $scope.Batalla.acertoJ1){
+                var myPopup = $ionicPopup.show({
+                  template: 'Perdiste',
+                  title: 'Resultado'
+                });
+                 $scope.Batalla.turno = "Nadie"
+          }
+          $timeout(function(){
+            myPopup.close();
+          }, 1000);
+          
+      }else{
+          $scope.Batalla.acertoJ1 = angular.equals($scope.Batalla.jugador2,$scope.eligeJugador);
+          $scope.Batalla.turno = "J2"
+      }
+      var ref = new Firebase('https://finalionic-6052c.firebaseio.com/Batallas/'+$scope.Batalla.$id);
+      ref.update({
+          "turno":$scope.Batalla.turno,
+          "acertoJ1": $scope.Batalla.acertoJ1,
+          "acertoJ2": $scope.Batalla.acertoJ2
+      });
+     location.href="#/side-menu21/page8";    
     }
     
 

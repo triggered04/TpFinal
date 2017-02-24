@@ -1,7 +1,7 @@
 <ion-view title="Perfil" id="page8">
   <ion-content padding="true" class="has-header">
     <h3>Batallas Creadas</h3>
-     <div ng-repeat="info in infos" ng-if="info.P1.split('-')[1] == userid" >
+     <div ng-repeat="info in infos" ng-if="info.P1.split('-')[1] == userid && info.turno!='Nadie'" >
         <div class="list card" id="home-card21">
           <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
             <ion-item class="item-avatar" id="home-list-item6">
@@ -15,7 +15,7 @@
      </div>
 
      <h3>Batallas Comenzadas</h3>
-      <div ng-repeat="info in infos" ng-if="info.P2.split('-')[1] == userid" >
+      <div ng-repeat="info in infos" ng-if="info.P2.split('-')[1] == userid && info.turno!='Nadie'" >
         <div class="list card" id="home-card21">
           <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
             <ion-item class="item-avatar" id="home-list-item6">
@@ -23,6 +23,17 @@
               <p>{{info.monto}} </p>
               <p ng-if="info.turno=='J2'">Tu Turno  </p>
               <p ng-if="info.turno=='J1'">Esperando a {{info.P1.split('-')[0]}} </p>
+            </ion-item>
+          </a>
+        </div>
+     </div>
+     <h3>Batallas Terminadas</h3>
+      <div ng-repeat="info in infos" ng-if="info.turno=='Nadie'" >
+        <div class="list card" id="home-card21">
+          <a class="cardClick" ng-click="goToBatalla(info)" ui-sref="menu.batalla">
+            <ion-item class="item-avatar" id="home-list-item6">
+              <h2>{{info.P1.split('-')[0]}}</h2>
+              <p>{{info.monto}} </p>
             </ion-item>
           </a>
         </div>

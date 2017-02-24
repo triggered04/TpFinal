@@ -27,7 +27,7 @@
             <input type="number" ng-disabled="Batalla.P1!=''"   placeholder="Ingrese el Monto" name="Batalla.monto" ng-model="Batalla.monto">
           </label>
         </div>
-        <button  ng-if="Batalla.P1 != '' && Batalla.P2 != '' && Batalla.turno=='J1'" id="batalla-button12" class="button button-positive  button-block" ng-click="elegirJugada()">Elegir jugada</button>
+        <button  ng-if="Batalla.P1 != '' && Batalla.P2 != '' && Batalla.turno=='J1'" id="batalla-button12" class="button button-positive  button-block" ng-click="elegirJugada(false)">Elegir jugada</button>
     </div>
     <div class="jugador2" ng-if="Batalla.P1!='' && Batalla.P1.split('-')[1] != userid ">
        <div class="casillas" ng-if="Batalla.P2 != ''">
@@ -56,7 +56,7 @@
               <input type="text" disabled placeholder="Ingrese el Monto" name="Batalla.monto" ng-model="Batalla.monto">
             </label>
         </div>
-        <button  ng-if="Batalla.P1 != '' && Batalla.P2 != '' && Batalla.turno=='J2'" id="batalla-button12" class="button button-positive  button-block" ng-click="elegirJugada()">Elegir jugada</button>
+        <button  ng-if="Batalla.P1 != '' && Batalla.P2 != '' && Batalla.turno=='J2'" id="batalla-button12" class="button button-positive  button-block" ng-click="elegirJugada(true)">Elegir jugada</button>
     </div>
 
     <button  ng-if="Batalla.P1 == ''" id="batalla-button12" class="button button-positive  button-block" ng-click="crearBatalla()">Crear Batalla</button>
