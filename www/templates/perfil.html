@@ -7,6 +7,8 @@
             <ion-item class="item-avatar" id="home-list-item6">
               <h2>{{info.P1.split('-')[0]}}</h2>
               <p>{{info.monto}} </p>
+              <p ng-if="info.turno=='J1'">Tu Turno  </p>
+              <p ng-if="info.turno=='J2'">Esperando a {{info.P2.split('-')[0]}} </p>
             </ion-item>
           </a>
         </div>
@@ -19,6 +21,8 @@
             <ion-item class="item-avatar" id="home-list-item6">
               <h2>{{info.P1.split('-')[0]}}</h2>
               <p>{{info.monto}} </p>
+              <p ng-if="info.turno=='J2'">Tu Turno  </p>
+              <p ng-if="info.turno=='J1'">Esperando a {{info.P1.split('-')[0]}} </p>
             </ion-item>
           </a>
         </div>
