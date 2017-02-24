@@ -32,10 +32,12 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
                         "P2":"",
                         "jugador1":[0,0,0,0],
                         "jugador2":[0,0,0,0],
+                        "Seljugador1":[0,0,0,0],
+                        "Seljugador2":[0,0,0,0],
                         "acertoJ1":false,
                         "acertoJ2":false,
                         "monto": 0,
-                        "turno": "",
+                        "turno": ""
                     
                       };
 
@@ -52,10 +54,12 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
                         "P2":"",
                         "jugador1":[0,0,0,0],
                         "jugador2":[0,0,0,0],
+                        "Seljugador1":[0,0,0,0],
+                        "Seljugador2":[0,0,0,0],
                         "acertoJ1":false,
                         "acertoJ2":false,
                         "monto": 0,
-                        "turno": "",
+                        "turno": ""
                       }
               return property;
             }

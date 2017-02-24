@@ -76,6 +76,7 @@ function ($scope, $stateParams,$ionicPopup,$timeout,esAdminVal) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
+    $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
     $scope.crearBatalla = function(){
       $scope.Batalla.turno="J2";
