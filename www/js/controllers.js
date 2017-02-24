@@ -143,7 +143,7 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
       
     }
     $scope.elegirJugada = function(jugador2){
-      var queryUser = refUser.orderByChild("uid").equalTo(Batalla.P1.split('-')[1]);
+      var queryUser = refUser.orderByChild("uid").equalTo($scope.Batalla.P1.split('-')[1]);
       queryUser.on('value', function(snap){
         var objUser = snap.val();
         keyCred2 = Object.keys(objUser);
