@@ -71,10 +71,10 @@ function ($scope, $stateParams,$ionicPopup,$timeout,esAdminVal) {
 }])
    
    
-.controller('batallaCtrl', ['$scope', '$stateParams','$ionicPopup','Batallas','getBatalla', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('batallaCtrl', ['$scope', '$stateParams','$ionicPopup','$timeout','Batallas','getBatalla', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$ionicPopup,Batallas,getBatalla) {
+function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
     $scope.Batalla = getBatalla.getProperty();
     $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
