@@ -1,6 +1,6 @@
 angular.module('app.controllers')
 
-.controller('creditoCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout,esAdminVal, $crypto,Creditos,Usuarios) {
+.controller('creditoCtrl', function($scope, $firebaseArray, $ionicPopup, $timeout,esAdminVal, $crypto,Creditos,Usuarios,$cordovaBarcodeScanner) {
 
 
   $scope.uid = firebase.auth().currentUser.uid;
@@ -14,8 +14,8 @@ angular.module('app.controllers')
     if(Admin)
       return true;
     return false;
+    
   };
-
 
   $scope.generarCredito= function(monto){
 
@@ -113,6 +113,22 @@ angular.module('app.controllers')
 
     }, 3000);
 
+  };
+
+  $scope.cargarQR = function(){
+    document.addEventListener("deviceready", function () {
+
+      cordova.plugins.barcodeScanner.scan(
+        function (result) { 
+          $scope.codigo = result.text; 
+        },
+        function (error) {
+          alert("Scanning failed: " + error);
+        }
+      );
+
+    },false);
+     
   };
 
 })

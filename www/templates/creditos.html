@@ -12,9 +12,9 @@
             <button class="button button-small" ng-click="cargarCredito(codigo)">Cargar</button>
       </div>
     </form>
-    <button id="creditos-button14" class="button button-positive  button-block">QR</button>
 
-    {{Admin}}
+    <button id="creditos-button14" class="button button-positive  button-block" ng-click="cargarQR()">QR</button>
+
     <div  ng-if='Admin()'>
       <h4>GENERAR CREDITOS</h4>
       <div class="item item-input-inset " >    
@@ -28,6 +28,7 @@
       <h4>CREDITOS</h4>
       <div class="list" ng-repeat="codCred in codigosCreditos" >
         <div class="item" ng-if=!codCred.usado> MONTO ${{codCred.monto}} <p>CODIGO '{{codCred.code}}'
+        <qrcode text="{{codCred.code}}" color-bright="#ff0000"></qrcode>
         </div>
       </div>
     </div>
