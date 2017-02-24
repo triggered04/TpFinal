@@ -143,7 +143,15 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
       
     }
     $scope.elegirJugada = function(jugador2){
-      var acerto 
+      var misCreditos,keyCred;
+      var refUser = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/");
+      var queryUser = refUser.orderByChild("uid").equalTo(firebase.auth().currentUser.uid);
+      queryUser.on('value', function(snap){
+        objUser = snap.val();
+        keyCred = Object.keys(objUser);
+        misCreditos = parseInt(objUser[keyCred].creditos);
+      });    
+      var acerto;
       console.log($scope.Batalla.jugador2);
       console.log($scope.eligeJugador);
       console.log(angular.equals($scope.Batalla.jugador2,$scope.eligeJugador));
@@ -151,19 +159,28 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
       if(jugador2){
           $scope.Batalla.acertoJ2 = angular.equals($scope.Batalla.jugador1,$scope.eligeJugador);
           if($scope.Batalla.acertoJ2 && $scope.Batalla.acertoJ1)
-          {
+          {  
+              var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
+              ref.update({
+                creditos: misCreditos+$scope.Batalla.monto        
+              });
               var myPopup = $ionicPopup.alert({
                 template: 'Empate',
                 title: 'Resultado'
               });
+             
               $scope.Batalla.turno = "Nadie"
           }else if(!$scope.Batalla.acertoJ2 && !$scope.Batalla.acertoJ1){
                 var myPopup = $ionicPopup.alert({
-                  template: 'Segui participando',
+                  template: 'Segui jugando',
                   title: 'Resultado'
                 });
                 $scope.Batalla.turno = "J1"
           }else if($scope.Batalla.acertoJ2 && !$scope.Batalla.acertoJ1){
+                var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
+                ref.update({
+                  creditos: misCreditos+($scope.Batalla.monto*2)
+                });
                 var myPopup = $ionicPopup.alert({
                   template: 'Ganaste',
                   title: 'Resultado'
