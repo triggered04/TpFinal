@@ -6,6 +6,7 @@ angular.module('app.controllers')
   $scope.uid = firebase.auth().currentUser.uid;
   $scope.Creditos= Usuarios;
   $scope.codigosCreditos =Creditos;
+  $scope.creditoGenerado = "";
   $scope.flagCarga = false;
   $scope.Admin = function(){
 
@@ -19,7 +20,7 @@ angular.module('app.controllers')
 
   $scope.generarCredito= function(monto){
 
-    if(esAdminVal.admin){      
+    if(esAdminVal.admin &&  monto != ""){      
       var code = Math.random().toString(36).substr(2, 9);
       var monto = monto;
       var admin = firebase.auth().currentUser.displayName;
@@ -40,6 +41,8 @@ angular.module('app.controllers')
           });
 
         });
+    $scope.creditoGenerado = null;
+
     }
   };
 
