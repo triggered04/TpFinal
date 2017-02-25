@@ -147,8 +147,9 @@ function ($scope, $stateParams,$ionicPopup,$timeout,Batallas,getBatalla) {
       queryUser.on('value', function(snap){
         var objUser = snap.val();
         keyCred2 = Object.keys(objUser);
-        misCreditos2 = parseInt(objUser[keyCred].creditos);
+        misCreditos2 = parseInt(objUser[keyCred2].creditos);
       });    
+      
       var acerto;
       console.log($scope.Batalla.jugador2);
       console.log($scope.eligeJugador);
