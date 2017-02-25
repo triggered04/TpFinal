@@ -1,5 +1,5 @@
 <ion-view title="Home" id="page1">
- <ion-floating-button ng-click="goToBatalla(nueva)" ui-sref="menu.batalla"></ion-floating-button>
+ <ion-floating-button ng-click="goToBatalla(null)" ui-sref="menu.batalla"></ion-floating-button>
   <ion-content padding="true" class="has-header">
     <div ng-repeat="info in infos" ng-if="!info.P2 && info.P1.split('-')[1] != userid" >
       <div class="list card" id="home-card21">
