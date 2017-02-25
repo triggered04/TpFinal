@@ -13,33 +13,46 @@ angular.module('app.controllers')
       keyCred = Object.keys(objUser);
       misCreditos = parseInt(objUser[keyCred].creditos);
     });  
-    
+
     $scope.userid = firebase.auth().currentUser.uid;
     console.log($scope.Batalla.$id);
     $scope.eligeJugador= [0,0,0,0];
 
 
     $scope.crearBatalla = function(){
-        if(misCreditos>=$scope.Batalla.monto){
-          $scope.Batalla.turno="J2";
-          $scope.Batalla.P1 = firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid; 
-          Batallas.$add($scope.Batalla);  
-          var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
-          ref.update({
-            creditos: misCreditos-$scope.Batalla.monto        
-          });
-          location.href="#/side-menu21/page1";  
-        }
-        else{
-           var myPopup = $ionicPopup.show({
-                  template: 'Creditos Insuficientes',
-                  title: 'Nop'
+      var flagVacio =true;
+      angular.forEach($scope.Batalla.jugador1, function(count) {
+          if(count==1){
+            flagVacio=false;
+          }
+        });
+        if(!flagVacio){
+          if(misCreditos>=$scope.Batalla.monto){
+            $scope.Batalla.turno="J2";
+            $scope.Batalla.P1 = firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid; 
+            Batallas.$add($scope.Batalla);  
+            var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
+            ref.update({
+              creditos: misCreditos-$scope.Batalla.monto        
             });
-            $timeout(function(){
-           myPopup.close();
-          }, 2000);
-        }
-       
+            location.href="#/side-menu21/page1";  
+          }
+          else{
+            var myPopup = $ionicPopup.show({
+                    template: 'Creditos Insuficientes',
+                    title: 'Nop'
+              });
+              $timeout(function(){
+            myPopup.close();
+            }, 2000);
+          }
+       }
+       else{
+              var myPopup = $ionicPopup.alert({
+              template: 'No elegiste posición para tu barquito',
+              title: 'Nop'
+              });
+       }
       
     }
 
