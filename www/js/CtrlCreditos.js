@@ -102,6 +102,7 @@ angular.module('app.controllers')
            title: "CREDITO CARGADO"
           });
 
+
       }
       else{
 
@@ -109,6 +110,8 @@ angular.module('app.controllers')
            template: '<center>' + codigo + "</center>",
            title: "CODIGO YA USADO"
           });
+
+
       }
 
     }, 3000);

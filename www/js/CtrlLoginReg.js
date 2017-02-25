@@ -28,7 +28,7 @@ angular.module('app.controllers')
         location.href="#/side-menu21/page1"; //Redireccionamiento
 
         var myPopup = $ionicPopup.show({
-           template: '<center> Bienvenido ' + firebase.auth().currentUser.displayName + "</center>",
+           template: '<center> ' + firebase.auth().currentUser.displayName + "</center>",
            title: 'Bienvenido'
         });
         $timeout(function(){
