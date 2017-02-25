@@ -9,7 +9,7 @@
             <label class="item-input-wrapper" id="creditos-input4">
               <input type="text" placeholder="" ng-model="codigo" >
             </label>
-            <button class="button button-small" ng-click="cargarCredito(codigo)">Cargar</button>
+            <button class="button button-small" ng-disabled="flagCarga" ng-click="cargarCredito(codigo)">Cargar</button>
       </div>
     </form>
 

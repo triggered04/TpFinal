@@ -6,7 +6,7 @@ angular.module('app.controllers')
   $scope.uid = firebase.auth().currentUser.uid;
   $scope.Creditos= Usuarios;
   $scope.codigosCreditos =Creditos;
-
+  $scope.flagCarga = false;
   $scope.Admin = function(){
 
     var Admin= esAdminVal.admin;
@@ -44,7 +44,7 @@ angular.module('app.controllers')
   };
 
   $scope.cargarCredito= function(codigo){
-
+    $scope.flagCarga =true;
     var credito = {
       cargar:false,
       codCred: null,
@@ -110,7 +110,7 @@ angular.module('app.controllers')
            title: "CODIGO YA USADO"
           });
       }
-
+      $scope.flagCarga = false;
     }, 3000);
 
   };
