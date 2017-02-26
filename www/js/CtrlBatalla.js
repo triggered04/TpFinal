@@ -58,27 +58,40 @@ angular.module('app.controllers')
 
 
     $scope.comenzarBatalla = function(){
-      if(misCreditos>=$scope.Batalla.monto){
-        var ref = new Firebase('https://finalionic-6052c.firebaseio.com/Batallas/'+$scope.Batalla.$id);
-        ref.update({
-            "turno":"J1",
-            "P2":firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid,
-            "jugador2":$scope.Batalla.jugador2
-        });
-        var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
+       var flagVacio =true;
+      angular.forEach($scope.Batalla.jugador1, function(count) {
+        if(count==1){
+          flagVacio=false;
+        }
+      });
+      if(!flagVacio){
+        if(misCreditos>=$scope.Batalla.monto){
+          var ref = new Firebase('https://finalionic-6052c.firebaseio.com/Batallas/'+$scope.Batalla.$id);
           ref.update({
-            creditos: misCreditos-$scope.Batalla.monto        
+              "turno":"J1",
+              "P2":firebase.auth().currentUser.displayName+"-"+firebase.auth().currentUser.uid,
+              "jugador2":$scope.Batalla.jugador2
           });
-        location.href="#/side-menu21/page1";  
-      } else{
-           var myPopup = $ionicPopup.show({
-                  template: 'Creditos Insuficientes',
-                  title: 'Nop'
+          var ref = new Firebase("https://finalionic-6052c.firebaseio.com/Usuarios/" + keyCred);
+            ref.update({
+              creditos: misCreditos-$scope.Batalla.monto        
             });
-            $timeout(function(){
-           myPopup.close();
-          }, 2000);
-        } 
+          location.href="#/side-menu21/page1";  
+        } else{
+            var myPopup = $ionicPopup.show({
+                    template: 'Creditos Insuficientes',
+                    title: 'Nop'
+              });
+              $timeout(function(){
+            myPopup.close();
+            }, 2000);
+          } 
+      } else{
+               var myPopup = $ionicPopup.alert({
+               template: 'No elegiste posición para tu barquito',
+               title: 'Nop'
+               });
+        }
     }
 
 
